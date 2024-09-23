@@ -41,13 +41,21 @@ const CategoryProducts = ({ products, category }) => {
                     ))}
                 <a 
                 className="carousel-control-prev" 
-                href={`#category-${category.id}`}  // Corrected the href with backticks and correct syntax
-                role="button" 
+                href={`#category-${category.id}`}  
                 data-slide="prev"
                     >
             {/* The icon for the previous control */}
-            <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span className="sr-only">Previous</span>
+            <span className="carousel-control-next-icon" aria-hidden="true"></span>
+            <span className="sr-only">nextious</span>
+                 </a>
+                 <a 
+                className="carousel-control-next" 
+                href={`#category-${category.id}`}  
+                data-slide="next"
+                    >
+            {/* The icon for the nextious control */}
+            <span className="carousel-control-next-icon" aria-hidden="true"></span>
+            <span className="sr-only">Next</span>
                  </a>
 
                 </div>
