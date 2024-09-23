@@ -40,7 +40,7 @@ const HomePage = () => {
       {categories.map((categories) =>(
         <div key={categories.id} className='row'>
           <CategoryProducts category={categories} products={products.categoryProducts.filter((product) => product.categoryId === categories.id)} />
-        </div>  
+        </div>  /////////////////////////////////////
       ))}
     </>
   );
