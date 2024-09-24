@@ -1,4 +1,4 @@
-
+import HomePage from './components/HomePage'; // Ensure this path is correct
 function App() {
   return (
     <>
@@ -39,8 +39,11 @@ function App() {
     </div>
   </div>
 </nav>
-    {/*Navigation bar starts here*/}
+    {/*Navigation bar ends here*/}
 
+    <HomePage /> 
+   
+    
     </>
   );
 }

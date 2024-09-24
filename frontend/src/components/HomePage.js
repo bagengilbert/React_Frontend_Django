@@ -5,7 +5,7 @@ import { fetchProducts } from '../redux/actions/productsActions';
 import CategoryList from '../components/CategoryList';
 import FlashSaleProducts from '../components/FlashSaleProducts';
 import CategoryProducts from '../components/CategoryProducts';
-import TopSellingProducts from '../components/TopSellingProducts';
+import TopSellingProducts from '../components/TopSellingProducts'; 
 
 const HomePage = () => {
   const dispatch = useDispatch();
@@ -17,30 +17,39 @@ const HomePage = () => {
     dispatch(fetchProducts());
   }, [dispatch]);
 
+  if (!categories || !products) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <>
-    {/* First row for listing categories and flash sales */}
-    <div className="row">
-        <div className='col-md-3'>
-        <CategoryList categories={categories} />
+      {/* First row for listing categories and flash sales */}
+      <div className="row">
+        <div className="col-md-3">
+          <CategoryList categories={categories} />
         </div>
-        <div className='col-md-3'>
-        <FlashSaleProducts products={products.flashSaleProducts} />
+        <div className="col-md-9">
+          <FlashSaleProducts products={products.flashSaleProducts} />
         </div>
-    </div>
-    {/* second row  top Selling Products */}
-    {/* First row for listing categories and flash sales */}
-    <div className="row">
-        <div className='col-md-3'>
-        <TopSellingProducts products={products.topSellingProducts} />
+      </div>
+
+      {/* Second row for Top Selling Products */}
+      <div className="row">
+        <div className="col-md-12">
+          <TopSellingProducts products={products.topSellingProducts} />
         </div>
-       {/* third,forth and fifty rows for products */}
-    </div>
-      {/* <CategoryProducts categories={categories} products={products.categoryProducts} /> */}
-      {categories.map((categories) =>(
-        <div key={categories.id} className='row'>
-          <CategoryProducts category={categories} products={products.categoryProducts.filter((product) => product.categoryId === categories.id)} />
-        </div>  /////////////////////////////////////
+      </div>
+
+      {/* Dynamically render rows for each category and its products */}
+      {categories.map((category) => (
+        <div key={category.id} className="row">
+          <div className="col-md-12">
+            <CategoryProducts
+              category={category}
+              products={products.categoryProducts.filter((product) => product.categoryId === category.id)}
+            />
+          </div>
+        </div>
       ))}
     </>
   );
