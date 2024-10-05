@@ -2,15 +2,11 @@ import React from 'react';
 
 // Functional component FlashSaleProducts that accepts a 'products' prop
 const FlashSaleProducts = ({ products }) => {
-    // Filter the products to get only those with 'isFlashSale' set to true
     const flashSaleProducts = products.filter((product) => product.isFlashSale);
 
     return (
         <div>
-            {/* Title for the flash sale section */}
             <h3>Flash Sales</h3>
-            
-            {/* Container for flash sale products */}
             <div className='row'>
                 {/* Check if there are any flash sale products available */}
                 {flashSaleProducts.length > 0 ? (

@@ -17,30 +17,36 @@ const HomePage = () => {
     dispatch(fetchProducts());
   }, [dispatch]);
 
+  if (!categories || !Array.isArray(products)) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <>
-    {/* First row for listing categories and flash sales */}
-    <div className="row">
-        <div className='col-md-3'>
-        <CategoryList categories={categories} />
+      <div className="row">
+        <div className="col-md-3">
+          <CategoryList categories={categories} />
         </div>
-        <div className='col-md-3'>
-        <FlashSaleProducts products={products.flashSaleProducts} />
+        <div className="col-md-9">
+          <FlashSaleProducts products={products.flashSaleProducts} />
         </div>
-    </div>
-    {/* second row  top Selling Products */}
-    {/* First row for listing categories and flash sales */}
-    <div className="row">
-        <div className='col-md-3'>
-        <TopSellingProducts products={products.topSellingProducts} />
+      </div>
+
+      <div className="row">
+        <div className="col-md-12">
+          <TopSellingProducts products={products.topSellingProducts} />
         </div>
-       {/* third,forth and fifty rows for products */}
-    </div>
-      {/* <CategoryProducts categories={categories} products={products.categoryProducts} /> */}
-      {categories.map((categories) =>(
-        <div key={categories.id} className='row'>
-          <CategoryProducts category={categories} products={products.categoryProducts.filter((product) => product.categoryId === categories.id)} />
-        </div>  /////////////////////////////////////
+      </div>
+
+      {categories.map((category) => (
+        <div key={category.id} className="row">
+          <div className="col-md-12">
+            <CategoryProducts
+              category={category}
+              products={products.categoryProducts.filter((product) => product.categoryId === category.id)}
+            />
+          </div>
+        </div>
       ))}
     </>
   );
